@@ -33,6 +33,7 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.16.8"
     annotationProcessor "org.projectlombok:lombok:1.16.8"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+    implementation 'org.apache.commons:commons-lang3:3.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
