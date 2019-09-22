@@ -14,7 +14,7 @@ import com.mobile.seoul.seoulstampapplication.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final long SPLASH_DISPLAY_TIME = 1500L;
+    private final long SPLASH_DISPLAY_TIME = 1000L;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

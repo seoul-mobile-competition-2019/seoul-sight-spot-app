@@ -3,6 +3,7 @@ package com.mobile.seoul.seoulstampapplication.activity;
 import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -15,16 +16,19 @@ import com.mobile.seoul.seoulstampapplication.R;
 import com.mobile.seoul.seoulstampapplication.adapter.ViewPagerAdapter;
 import com.mobile.seoul.seoulstampapplication.fragment.SightColorFragment;
 import com.mobile.seoul.seoulstampapplication.fragment.SightInfoFragment;
+import com.mobile.seoul.seoulstampapplication.view_pager.SightViewPager;
 
 import java.util.Arrays;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.SIGHT_KEY;
+
 public class SightActivity extends AppCompatActivity implements SightColorFragment.OnFragmentInteractionListener, SightInfoFragment.OnFragmentInteractionListener {
 
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private SightViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
 
     @SuppressLint("NewApi")
@@ -32,6 +36,8 @@ public class SightActivity extends AppCompatActivity implements SightColorFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sight);
+
+        Log.i("sightKey 확인", getIntent().getStringExtra(SIGHT_KEY));
 
         tabLayout = findViewById(R.id.layout_tab);
         Arrays.asList(Tab.values()).forEach(tab -> {
@@ -42,6 +48,7 @@ public class SightActivity extends AppCompatActivity implements SightColorFragme
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(viewPagerAdapter);
 
+//        viewPager.requestDisallowInterceptTouchEvent(true);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

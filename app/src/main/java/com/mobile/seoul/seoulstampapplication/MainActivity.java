@@ -6,27 +6,33 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mobile.seoul.seoulstampapplication.activity.BarcodeActivity;
 import com.mobile.seoul.seoulstampapplication.activity.SightActivity;
-import com.mobile.seoul.seoulstampapplication.constant.SightConstant;
-import com.mobile.seoul.seoulstampapplication.service.SqlLiteDatabaseFactory;
+import com.mobile.seoul.seoulstampapplication.enums.Sight;
+import com.mobile.seoul.seoulstampapplication.service.SqlLiteDatabaseService;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 
+import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.BARCODE_REQUEST_CODE;
+import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.BARCODE_RESULT_KEY;
 import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.SELECT_SIGHT_LOCK_BY_ID;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.BANPO_BRIDGE;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.CHEONGGYECHEON;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.COEX;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.HANGANG;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.HANOK;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.LOTTE_TOWER;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.NAMSAN;
-import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.Sight.STAR_LOAD;
+import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.SIGHT_KEY;
+import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.UPDATE_SIGHT_IS_LOCKED;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.BANPO_BRIDGE;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.CHEONGGYECHEON;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.COEX;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.HANGANG;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.HANOK;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.LOTTE_TOWER;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.NAMSAN;
+import static com.mobile.seoul.seoulstampapplication.enums.Sight.STAR_LOAD;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("NewApi")
     private void openDB() {
-        sqLiteDatabase = SqlLiteDatabaseFactory.getSqLiteDatabase(this);
+        sqLiteDatabase = SqlLiteDatabaseService.getSqLiteDatabase(this);
     }
 
     @SuppressLint("NewApi")
     private void initView() {
-        Arrays.asList(SightConstant.Sight.values()).forEach(
+        Arrays.asList(Sight.values()).forEach(
                 btn -> {
                     switch (btn) {
                         case NAMSAN:
@@ -80,21 +86,38 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    private void nextActivity(boolean checkSightLock, SightConstant.Sight sight) {
-        // TODO: sightLock에 따라 sight에 맞는 다음 액티비티 load, checkSightLock이 false sight에 맞는 Activity, true 시 바코드 Activity load
-
-        Log.i("checkSightLock 확인", String.valueOf(checkSightLock));
+    private void nextActivity(boolean checkSightLock, Sight sight) {
         if (checkSightLock) {
-//            startActivity(new Intent(getApplicationContext(), BarcodeActivity.class));
-            startActivity(new Intent(getApplicationContext(), SightActivity.class));
+            Intent intent = new Intent(getApplicationContext(), BarcodeActivity.class);
+            intent.putExtra(SIGHT_KEY, sight.name());
+            startActivityForResult(intent, BARCODE_REQUEST_CODE);
             return;
         }
-        startActivity(new Intent(getApplicationContext(), SightActivity.class));
+        startActivity(createSightIntent(sight));
     }
 
-    private boolean checkSightLock(SightConstant.Sight sight) {
+    private boolean checkSightLock(Sight sight) {
         Cursor c = sqLiteDatabase.rawQuery(String.format(SELECT_SIGHT_LOCK_BY_ID, sight.getDbId()), null);
         c.moveToNext();
         return StringUtils.equals(c.getString(c.getColumnIndex("is_locked")), "Y") ? true : false;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == BARCODE_REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data.getBooleanExtra(BARCODE_RESULT_KEY, false)) {
+                Sight sight = Sight.valueOf(data.getStringExtra(SIGHT_KEY));
+                sqLiteDatabase.execSQL(String.format(UPDATE_SIGHT_IS_LOCKED, sight.getDbId()));
+                startActivity(createSightIntent(sight));
+                return;
+            }
+            Toast.makeText(this, "Qr 코드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private Intent createSightIntent(Sight sight) {
+        Intent intent = new Intent(getApplicationContext(), SightActivity.class);
+        intent.putExtra(SIGHT_KEY, sight.name());
+        return intent;
     }
 }

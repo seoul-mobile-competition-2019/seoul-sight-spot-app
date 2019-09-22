@@ -8,14 +8,15 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mobile.seoul.seoulstampapplication.constant.SightConstant.Table;
 import com.mobile.seoul.seoulstampapplication.constant.SightConstant;
+import com.mobile.seoul.seoulstampapplication.enums.Sight;
+import com.mobile.seoul.seoulstampapplication.enums.Table;
 
 import java.util.Arrays;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class SqlLiteDatabaseFactory {
+public class SqlLiteDatabaseService {
 
     private static SQLiteDatabase sQLiteDatabase = null;
 
@@ -27,7 +28,7 @@ public class SqlLiteDatabaseFactory {
         sQLiteDatabase = appCompatActivity.openOrCreateDatabase(SightConstant.DB_NAME, MODE_PRIVATE, null);
         if(!existSightTable()) {
             sQLiteDatabase.execSQL(SightConstant.CREATE_SIGHT_TABLE);
-            Arrays.asList(SightConstant.Sight.values()).forEach(
+            Arrays.asList(Sight.values()).forEach(
                     sight -> {
                         sQLiteDatabase.execSQL(String.format(SightConstant.INSERT_SIGHT_INIT_DATA, sight.getDbId()));
                     }
