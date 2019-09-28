@@ -5,10 +5,149 @@
     android:layout_height="match_parent"
     tools:context=".fragment.SightInfoFragment">
 
-    <TextView
+    <androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="info"
-        android:textSize="500px"
-        />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="1dp">
+                <TextView
+                    android:id="@+id/info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="경복궁"
+                    android:textSize="50dp"
+                    android:textColor="#000000"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="1dp">
+
+                <ImageView
+                    android:id="@+id/info_main_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp"
+                    android:src="@drawable/img_gyeong" />
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="1dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/call"
+                    android:padding="1dp"/>
+
+                <Button
+                    android:id="@+id/btn_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#cccccc"
+                    android:text="tel : +82 10-1234-1234"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textAlignment="textStart"
+                    android:padding="1dp"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="2dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/location"
+                    android:padding="1dp"/>
+                <Button
+                    android:id="@+id/btn_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#cccccc"
+                    android:text="Location : Seoul"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:paddingTop="1dp"
+                    android:textAlignment="textStart"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="1dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/home"
+                    android:padding="1dp"/>
+                <Button
+                    android:id="@+id/btn_web"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#cccccc"
+                    android:text="웹사이트 접속"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:textAlignment="textStart"
+                    android:paddingTop="1dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/sight_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="경복궁 info~~~~~~~~~~~~~~~"
+                android:textSize="70px"
+                android:textColor="#000000"
+                android:paddingTop="1dp"
+                android:background="#ffffff"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="1dp"
+                >
+
+                <TextView
+                    android:id="@+id/info_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="#ffffff"
+                    android:padding="1dp"
+                    android:text="Operating Time\n 월 09:00 ~ 18:00\n 화 09:00 ~ 18:00 \n수 09:00 ~ 18:00\n목 09:00 ~ 18:00\n금 09:00 ~ 18:00\n토 09:00 ~ 18:00\n일 09:00 ~ 18:00"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="25dp"
+
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>

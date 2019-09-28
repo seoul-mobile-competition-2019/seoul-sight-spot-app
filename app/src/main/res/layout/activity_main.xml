@@ -6,127 +6,277 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             >
 
-            <Button
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/customborder">
+                <ImageView
+                    android:id="@+id/main_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/logo"/>
+
+                <ImageButton
+                    android:id="@+id/stamp_btn"
+                    android:layout_width="40dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/stamp"/>
+
+            </RelativeLayout>
+            <ImageButton
                 android:id="@+id/namsan_sight_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#ffffff"
                 android:layout_weight="1"
-                android:background="#FFCCBC"
-                android:textColor="#ffffff"
-                android:textSize="30sp"
-                android:text="남산타워"
-                />
+                android:src="@drawable/img_ntower_lock"
+                >
 
-            <Button
-                android:id="@+id/cheonggyecheon_sight_btn"
-                android:background="#D1C4E9"
+            </ImageButton>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_ntower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nTower"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
+
+                </TextView>
+            </RelativeLayout>
+
+
+            <ImageButton
+                android:id="@+id/gyungbok_sight_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textColor="#ffffff"
-                android:textSize="30sp"
-                android:text="청계천"
+                android:background="#ffffff"
+                android:src="@drawable/img_gyeong_lock"
                 />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/name_gyungbok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gyungbok"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+                </TextView>
+            </RelativeLayout>
 
-            <Button
+            <ImageButton
                 android:id="@+id/hanok_sight_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#BBDEFB"
-                android:textSize="30sp"
-                android:textColor="#ffffff"
-                android:text="한옥마을"
+                android:background="#ffffff"
+                android:src="@drawable/img_nam_lock"
                 />
 
-            <Button
-                android:id="@+id/hangang_sight_btn"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#FFECB3"
-                android:textSize="30sp"
-                android:textColor="#ffffff"
-                android:text="한강"
-                />
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/name_nam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nam"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+                </TextView>
+            </RelativeLayout>
 
-            <Button
+            <ImageButton
                 android:id="@+id/coex_sight_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#DCEDC8"
-                android:textSize="30sp"
-                android:textColor="#ffffff"
-                android:text="코엑스"
+                android:background="#ffffff"
+                android:src="@drawable/img_sm_lock"
                 />
-
-            <Button
-                android:id="@+id/starload_sight_btn"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#F8BBD0"
-                android:textSize="30sp"
-                android:textColor="#ffffff"
-                android:text="한류스타거리"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/lottetower_sight_btn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#DCEDC8"
-                android:textSize="30sp"
-                android:textColor="#ffffff"
-                android:text="롯데타워"
-                />
+                <TextView
+                    android:id="@+id/name_sm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SM town"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
 
-            <Button
+                </TextView>
+            </RelativeLayout>
+
+            <ImageButton
                 android:id="@+id/banpobridge_sight_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#F8BBD0"
-                android:textSize="30sp"
-                android:textColor="#ffffff"
-                android:text="반포대교"
+                android:background="#ffffff"
+                android:src="@drawable/img_sebit_lock"
                 />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_sebit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sebit island"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/cheonggyecheon_sight_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:src="@drawable/img_cheong_lock"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_cheong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cheong Gye Cheon"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
+                </TextView>
+            </RelativeLayout>
+
+
+            <ImageButton
+                android:id="@+id/hangang_sight_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:src="@drawable/img_yeoeui_lock"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_yeoeui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yeoeui island"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/starload_sight_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:src="@drawable/img_kstar_lock"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_kstar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="K-Star load"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+            <ImageButton
+                android:id="@+id/lottetower_sight_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:src="@drawable/img_lotte_lock"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_lottetower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lotte Tower"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
+                </TextView>
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/duk_sight_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:src="@drawable/img_duk_lock"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/name_duk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duk Soo"
+                    android:textColor="#000000"
+                    android:textSize="30dp">
+
+                </TextView>
+            </RelativeLayout>
+
         </LinearLayout>
-    </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

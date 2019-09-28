@@ -3,4 +3,33 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black_background">#B2383A53</color>
+    <color name="black">#000000</color>
+
+    <!--region MsPaint Color Table Row 1 Color-->
+    <color name="ms_paint_color_00">@color/black</color>
+    <color name="ms_paint_color_01">#7F7F7F</color>
+    <color name="ms_paint_color_02">#880015</color>
+    <color name="ms_paint_color_03">#ED1C24</color>
+    <color name="ms_paint_color_04">#FF7F27</color>
+    <color name="ms_paint_color_05">#FFF200</color>
+    <color name="ms_paint_color_06">#22B14C</color>
+    <color name="ms_paint_color_07">#00A2E8</color>
+    <color name="ms_paint_color_08">#3F48CC</color>
+    <color name="ms_paint_color_09">#A349A4</color>
+    <!--endregion-->
+
+    <!--region MsPaint Color Table Row 2 Color-->
+    <color name="ms_paint_color_10">@color/white</color>
+    <color name="ms_paint_color_11">#C3C3C3</color>
+    <color name="ms_paint_color_12">#B97A57</color>
+    <color name="ms_paint_color_13">#FFAEC9</color>
+    <color name="ms_paint_color_14">#FFC90E</color>
+    <color name="ms_paint_color_15">#EFE4B0</color>
+    <color name="ms_paint_color_16">#B5E61D</color>
+    <color name="ms_paint_color_17">#99D9EA</color>
+    <color name="ms_paint_color_18">#7092BE</color>
+    <color name="ms_paint_color_19">#C8BFE7</color>
+    <!--endregion-->
 </resources>

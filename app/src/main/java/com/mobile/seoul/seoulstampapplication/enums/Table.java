@@ -6,5 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Table {
-    SIGHT, SIGHT_INFO, SIGHT_COLOR;
+    SIGHT
+    ;
 }

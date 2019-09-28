@@ -1,0 +1,10 @@
+<resources>
+    <dimen name="dp_0">0dp</dimen>
+    <dimen name="images_card_border_radius">8dp</dimen>
+    <dimen name="images_margin_padding">8dp</dimen>
+    <dimen name="small_color_picker_height_width">100dp</dimen>
+    <dimen name="color_box_height">65dp</dimen>
+    <dimen name="color_box_margin_padding">5dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+
+</resources>

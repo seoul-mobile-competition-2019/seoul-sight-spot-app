@@ -12,9 +12,12 @@ import com.mobile.seoul.seoulstampapplication.constant.SightConstant;
 import com.mobile.seoul.seoulstampapplication.enums.Sight;
 import com.mobile.seoul.seoulstampapplication.enums.Table;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Arrays;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.SELECT_SIGHT_LOCK_BY_ID;
 
 public class SqlLiteDatabaseService {
 
@@ -25,7 +28,9 @@ public class SqlLiteDatabaseService {
         if (sQLiteDatabase != null) {
             return sQLiteDatabase;
         }
+
         sQLiteDatabase = appCompatActivity.openOrCreateDatabase(SightConstant.DB_NAME, MODE_PRIVATE, null);
+        SqlLiteDatabaseService.dropSightTable();
         if(!existSightTable()) {
             sQLiteDatabase.execSQL(SightConstant.CREATE_SIGHT_TABLE);
             Arrays.asList(Sight.values()).forEach(
@@ -35,6 +40,10 @@ public class SqlLiteDatabaseService {
             );
         }
         return sQLiteDatabase;
+    }
+
+    public static void dropSightTable() {
+        sQLiteDatabase.execSQL(String.format("DROP TABLE SIGHT"));
     }
 
     private static boolean existSightTable() {

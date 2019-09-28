@@ -1,24 +1,32 @@
 package com.mobile.seoul.seoulstampapplication.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mobile.seoul.seoulstampapplication.R;
 import com.mobile.seoul.seoulstampapplication.adapter.ViewPagerAdapter;
+import com.mobile.seoul.seoulstampapplication.enums.Sight;
+import com.mobile.seoul.seoulstampapplication.fragment.OnBackPressedListener;
 import com.mobile.seoul.seoulstampapplication.fragment.SightColorFragment;
 import com.mobile.seoul.seoulstampapplication.fragment.SightInfoFragment;
 import com.mobile.seoul.seoulstampapplication.view_pager.SightViewPager;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,8 +44,6 @@ public class SightActivity extends AppCompatActivity implements SightColorFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sight);
-
-        Log.i("sightKey 확인", getIntent().getStringExtra(SIGHT_KEY));
 
         tabLayout = findViewById(R.id.layout_tab);
         Arrays.asList(Tab.values()).forEach(tab -> {
@@ -57,10 +63,14 @@ public class SightActivity extends AppCompatActivity implements SightColorFragme
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
             }
+
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) { }
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
             @Override
-            public void onTabReselected(TabLayout.Tab tab) { }
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
         });
 
     }
@@ -82,5 +92,17 @@ public class SightActivity extends AppCompatActivity implements SightColorFragme
     enum Tab {
         INFO,
         COLOR
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onBackPressed() {
+        List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+        if (fragmentList != null) {
+            fragmentList.stream()
+                    .filter(fragment -> fragment instanceof OnBackPressedListener)
+                    .forEach(item -> ((OnBackPressedListener) item).onBackPressed());
+        }
+        super.onBackPressed();
     }
 }

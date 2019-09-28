@@ -6,6 +6,7 @@ public class SightConstant {
 
     public static final String DB_NAME = "seoul_sight";
     public static final String SIGHT_KEY = "sight";
+    public static final String COLOR_IMAGE_PATH_KEY = "colorImagePathKey";
     public static final int BARCODE_REQUEST_CODE = 999;
     public static final String BARCODE_RESULT_KEY = "barcode";
 

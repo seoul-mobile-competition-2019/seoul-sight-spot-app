@@ -1,6 +1,7 @@
 package com.mobile.seoul.seoulstampapplication.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,8 +10,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mobile.seoul.seoulstampapplication.R;
+import com.mobile.seoul.seoulstampapplication.enums.Sight;
+
+import java.util.Locale;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.mobile.seoul.seoulstampapplication.constant.SightConstant.SIGHT_KEY;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,14 +33,28 @@ import com.mobile.seoul.seoulstampapplication.R;
  * create an instance of this fragment.
  */
 public class SightInfoFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    @BindView(R.id.info_name)
+    TextView infoName;
+    @BindView(R.id.sight_info)
+    TextView sightInfo;
+    @BindView(R.id.info_time)
+    TextView infoTime;
+    @BindView(R.id.btn_location)
+    Button locationBtn;
+    @BindView(R.id.btn_web)
+    Button webBtn;
+    @BindView(R.id.btn_tel)
+    Button telBtn;
+    @BindView(R.id.info_main_image)
+    ImageView infoMainImage;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,7 +93,51 @@ public class SightInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sight_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_sight_info, container, false);
+        ButterKnife.bind(this, view);
+        Sight sight = Sight.valueOf(getActivity().getIntent().getStringExtra(SIGHT_KEY));
+        Locale lan = getResources().getConfiguration().locale;
+
+        String str = lan.getLanguage();
+
+        switch (str) {
+            case "ko":
+                infoName.setText(getString(sight.getKoreaName()));
+                locationBtn.setText(getString(sight.getKorLocation()));
+                sightInfo.setText(getString(sight.getKoreaInfo()));
+                infoTime.setText(getString(sight.getKoreanOprationTime()));
+                break;
+            default:
+                infoName.setText(getString(sight.getEnglishName()));
+                locationBtn.setText(getString(sight.getEnLocation()));
+                sightInfo.setText(getString(sight.getEnglishInfo()));
+                infoTime.setText(getString(sight.getEnglishOprationTime()));
+                break;
+        }
+
+        infoMainImage.setImageResource(sight.getDrawableId());
+        webBtn.setText(getString(sight.getHomePage()));
+        webBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(sight.getHomePage())));
+            startActivity(intent);
+        });
+        telBtn.setText(getString(sight.getTel()));
+        telBtn.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + getString(sight.getTel())));
+            startActivity(intent);
+        });
+
+        locationBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse(getString(sight.getMapUrl())));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+            startActivity(intent);
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

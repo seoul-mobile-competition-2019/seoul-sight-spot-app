@@ -2,15 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mobile.seoul.seoulstampapplication">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
-        android:allowBackup="true"
+        android:name=".ColorBook"
+        android:allowBackup="false"
+        android:fullBackupContent="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true"
-        >
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.StampActivity"></activity>
         <activity android:name=".activity.SightActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.BarcodeActivity" />
