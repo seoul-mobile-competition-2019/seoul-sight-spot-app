@@ -107,12 +107,12 @@ public class MainActivity extends AppCompatActivity {
                         case GYEONBOK:
                             view = findViewById(btn.getButtonId());
                             setOpenBackground(GYEONBOK, view);
-                            view.setOnClickListener(item -> nextActivity(checkSightLock(BANPO_BRIDGE), BANPO_BRIDGE));
+                            view.setOnClickListener(item -> nextActivity(checkSightLock(GYEONBOK), GYEONBOK));
                             break;
                         case DUKSOO:
                             view = findViewById(btn.getButtonId());
                             setOpenBackground(DUKSOO, view);
-                            view.setOnClickListener(item -> nextActivity(checkSightLock(BANPO_BRIDGE), BANPO_BRIDGE));
+                            view.setOnClickListener(item -> nextActivity(checkSightLock(DUKSOO), DUKSOO));
                             break;
                     }
                 }
