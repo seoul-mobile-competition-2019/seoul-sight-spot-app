@@ -30,7 +30,7 @@ public class SqlLiteDatabaseService {
         }
 
         sQLiteDatabase = appCompatActivity.openOrCreateDatabase(SightConstant.DB_NAME, MODE_PRIVATE, null);
-        SqlLiteDatabaseService.dropSightTable();
+//        SqlLiteDatabaseService.dropSightTable();
         if(!existSightTable()) {
             sQLiteDatabase.execSQL(SightConstant.CREATE_SIGHT_TABLE);
             Arrays.asList(Sight.values()).forEach(
